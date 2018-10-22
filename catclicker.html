@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Cat Clicker Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <h1>Please click the cat</h1>
+  <ul id="cat-list">
+    
+  </ul>
+  <h4 id="cat-name">Clicked the Cat A and click count is <h4 id="count">0</h4></h4>
+  <img  id="cat-img" src="https://lh5.ggpht.com/LfjkdmOKkGLvCt-VuRlWGjAjXqTBrPjRsokTNKBtCh8IFPRetGaXIpTQGE2e7ZCUaG2azKNkz38KkbM_emA=s0#w=640&h=454" alt="cute cat" name="cat-img"/" onclick="incrementCount()">
+  <script>
+    const cats = [{
+name: 'Cat A',
+clickCount: 0,
+url: 'https://lh5.ggpht.com/LfjkdmOKkGLvCt-VuRlWGjAjXqTBrPjRsokTNKBtCh8IFPRetGaXIpTQGE2e7ZCUaG2azKNkz38KkbM_emA=s0#w=640&h=454'
+},
+{
+name: 'Cat B',
+clickCount: 0,
+url: 'https://lh3.ggpht.com/nlI91wYNCrjjNy5f-S3CmVehIBM4cprx-JFWOztLk7vFlhYuFR6YnxcT446AvxYg4Ab7M1Fy0twaOCWYcUk=s0#w=640&h=426'
+},
+{
+name: 'Cat C',
+clickCount: 0,
+url: 'https://lh3.ggpht.com/kixazxoJ2ufl3ACj2I85Xsy-Rfog97BM75ZiLaX02KgeYramAEqlEHqPC3rKqdQj4C1VFnXXryadFs1J9A=s0#w=640&h=496'
+},
+{
+name: 'Cat D',
+clickCount: 0,
+url: 'https://d17h27t6h515a5.cloudfront.net/topher/2017/March/58b8af2f_nd001-cat-clicker/nd001-cat-clicker.jpg'
+},
+{
+name: 'Cat E',
+clickCount: 0,
+url: 'https://uploads.scratch.mit.edu/users/avatars/1385/1878.png'
+}];
+
+for (let cat of cats) {
+      console.log(cat.name);
+   const li = document.createElement('li');
+    
+    const children = document.getElementById('cat-list').children.length + 1
+    li.setAttribute("id", cat.name)
+    li.appendChild(document.createTextNode(cat.name));    
+    document.getElementById('cat-list').appendChild(li);
+
+// document.getElementById("cat-name").innerHTML = '<li>$(this.cat.name)</li>';
+
+}
+  
+document.getElementById("cat-list").addEventListener("click",function(e) {
+        // e.target is our targetted element.
+                    // try doing console.log(e.target.nodeName), it will result LI
+          let count=0;
+        if(e.target && e.target.nodeName == "LI") {
+           for (let cat of cats) {
+              if (e.target.id===cat.name)
+              {
+                document.getElementById("cat-img").src=cat.url;
+                document.getElementById("count").innerHTML=count;
+                document.getElementById("cat-img").addEventListener("click",function(e){
+                    count++;
+                    document.getElementById("count").innerHTML=count;
+                });
+              }
+            
+           } 
+        
+          document.getElementById("cat-name").innerHTML="Clicked the "+e.target.id+" and click count is";  
+
+        }
+    });
+    let i=0;
+    function incrementCount()
+    {
+      i++;
+      document.getElementById("count").innerHTML=i;
+    }
+  </script>
+ 
+</body>
+
+</html>
